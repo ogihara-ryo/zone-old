@@ -8,5 +8,11 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
-    .container
+    header
+      == render 'header'
+
+    article.container
       == yield
+    
+    footer
+      == render 'footer'
