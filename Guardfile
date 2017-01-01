@@ -15,7 +15,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard :rubocop do
+guard :rubocop, notification: true do
   watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
