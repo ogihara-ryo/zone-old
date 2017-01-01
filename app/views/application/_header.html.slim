@@ -8,7 +8,9 @@ nav.blue.darken-2
           = current_user.name
           i.material-icons.right arrow_drop_down
       - else
-        li = link_to 'Sign in', signin_path, class: 'waves-effect waves-light btn'
+        li = link_to 'Sign in', '#signin-modal', class: 'waves-effect waves-light btn'
 
 ul#nav-dropdown.dropdown-content
   li = link_to('Sign out', signout_path, method: :delete)
+
+== render 'sign_in_modal'

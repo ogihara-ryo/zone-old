@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_back
     else
-      flash.now[:danger] = 'sign in failed.'
-      render :new
+      render 'sign_in_failed'
     end
   end
 

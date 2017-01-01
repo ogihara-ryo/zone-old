@@ -1,0 +1,19 @@
+#signin-modal.modal
+  = form_for(:session, url: signin_path, remote: true) do |f|
+    .modal-content
+      h4 Sign in
+      .input-field
+        = f.text_field :name, class: 'validate'
+        = f.label :name
+
+      .input-field
+        = f.password_field :password, class: 'validate'
+        = f.label :password
+
+      .input-field
+        = f.check_box :remember_token
+        = f.label :remember_token, 'Remember me'
+
+    .modal-footer
+      span.modal-action.modal-close.waves-effect.waves-red.btn-flat Cancel
+      = f.submit 'Login', class: 'waves-effect waves-green btn-flat'
