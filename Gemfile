@@ -36,6 +36,9 @@ end
 
 group :development do
   gem 'rubocop'
+  gem 'terminal-notifier-guard'
+  gem 'guard'
+  gem 'guard-rubocop'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '~> 3.0.5'
