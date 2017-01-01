@@ -1,4 +1,14 @@
 nav.blue.darken-2
   .nav-wrapper.container
     = link_to 'Zone', root_path, class: 'brand-logo'
-    
+
+    ul.right
+      - if signed_in?
+        li.dropdown-button data-activates='nav-dropdown' = link_to('#') do
+          = current_user.name
+          i.material-icons.right arrow_drop_down
+      - else
+        li = link_to 'Sign in', signin_path, class: 'waves-effect waves-light btn'
+
+ul#nav-dropdown.dropdown-content
+  li = link_to('Sign out', signout_path, method: :delete)
