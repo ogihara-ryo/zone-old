@@ -56,14 +56,14 @@ $(function() {
   function startPomodoro() {
     status = 'pomodoro';
     showNotification('Start pomodoro');
-    changeNavColor('red');
+    changeNavColor('pink darken-1');
     setTimer(25);
   }
 
   function startBreak() {
     status = 'break';
     showNotification('Start break');
-    changeNavColor('green');
+    changeNavColor('green darken-1');
     setTimer(5);
   }
 
