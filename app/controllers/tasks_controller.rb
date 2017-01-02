@@ -74,7 +74,7 @@ class TasksController < ApplicationController
   end
 
   def set_tasks
-    @tasks = Task.where(user: @user)
+    @tasks = Task.where(user: @user, when: Time.zone.now.to_date)
   end
 
   def render_index
