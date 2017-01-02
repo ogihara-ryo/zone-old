@@ -44,8 +44,8 @@ $(function() {
 
   function setTimer(minute) {
     var now = new Date();
-    //target = now.setMinutes(now.getMinutes() + minute);
-    target = now.setSeconds(now.getSeconds() + 5);
+    target = now.setMinutes(now.getMinutes() + minute);
+    // target = now.setSeconds(now.getSeconds() + 5);
     countDown();
   }
 
