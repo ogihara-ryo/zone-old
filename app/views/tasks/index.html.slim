@@ -28,7 +28,7 @@
         th.col.s1
         th.col.s1
 
-  - tasks_group_by_status[status].each do |task|
+  - tasks_group_by_status[status]&.each do |task|
     = form_for([@user, task], html: { class: 'row' }) do |f|
       .input-field.col.s2.center
         - if task.unstarted?
