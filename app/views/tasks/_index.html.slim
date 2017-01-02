@@ -1,6 +1,7 @@
 = form_for [@user, @task], remote: true do |f|
   .row
     = f.hidden_field :user_id, value: @user.id
+    = f.hidden_field :when, value: Time.zone.now.to_date.to_s
 
     .input-field.col.s10
       = f.label :title
