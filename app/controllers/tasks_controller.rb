@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /users/:user_id/tasks
   # GET /users/:user_id/tasks.json
   def index
-    @tasks = Task.where(user: @user)
+    set_tasks
     @task = Task.new
   end
 
@@ -13,13 +13,13 @@ class TasksController < ApplicationController
   # POST /users/:user_id/tasks.json
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
-        format.html { redirect_to user_task_path(@user, @task), notice: 'Task was successfully created.' }
+        set_tasks
+        format.js { render_index }
         format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new }
+        format.js { render :index }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -30,10 +30,11 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to user_task_path(@user, @task), notice: 'Task was successfully updated.' }
+        set_tasks
+        format.js { render_index }
         format.json { render :show, status: :ok, location: @task }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -43,18 +44,21 @@ class TasksController < ApplicationController
   # DELETE /users/:user_id/tasks/1.json
   def destroy
     @task.destroy
+    set_tasks
     respond_to do |format|
-      format.html { redirect_to user_task_path(@user, @task), notice: 'Task was successfully destroyed.' }
+      format.js { render_index }
       format.json { head :no_content }
     end
   end
 
   def start
     @task.started!
+    render_index
   end
 
   def finish
     @task.finished!
+    render_index
   end
 
   private
@@ -66,6 +70,16 @@ class TasksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def set_tasks
+    @tasks = Task.where(user: @user)
+  end
+
+  def render_index
+    set_tasks
+    @task = Task.new
+    render :index
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
