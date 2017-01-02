@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   delete 'signout' => 'sessions#destroy'
 
   resources :users, only: [] do
-    resources :tasks
+    resources :tasks do
+      put 'start'
+      put 'finish'
+    end
   end
 end

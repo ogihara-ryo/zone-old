@@ -1,29 +1,54 @@
-== render 'tasks/form'
+= form_for [@user, @task] do |f|
+  .row
+    = f.hidden_field :user_id, value: @user.id
 
-table
-  thead
-    tr
-      th Title
-      th Estimate
-      th Actual
-      th Status
-      th User
-      th
-      th
-      th
+    .input-field.col.s10
+      = f.label :title
+      = f.text_field :title
 
-  tbody
-    - @tasks.each do |task|
+    .input-field.col.s1
+      = f.label :estimate
+      = f.number_field :estimate
+
+    .input-field.col.s1
+      = f.submit 'Create', class: 'btn'
+
+- tasks_group_by_status = @tasks.group_by(&:status)
+- %w(started unstarted finished).each do |status|
+  h5 = status
+
+  table.row
+    thead
       tr
-        td = task.title
-        td = task.estimate
-        td = task.actual
-        td = task.status
-        td = task.user
-        td = link_to 'Show', task
-        td = link_to 'Edit', edit_task_path(task)
-        td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
+        th.col.s2
+        th.col.s5 Title
+        th.col.s1 Estimate
+        th.col.s1 Actual
+        th.col.s1 Status
+        th.col.s1
+        th.col.s1
 
-br
+  - tasks_group_by_status[status].each do |task|
+    = form_for([@user, task], html: { class: 'row' }) do |f|
+      .input-field.col.s2.center
+        - if task.unstarted?
+          = link_to 'Start', user_task_start_path(@user, task), method: :put, class: 'btn'
+        - elsif task.started?
+          = link_to 'Finish', user_task_start_path(@user, task), method: :put, class: 'btn blue darken-4'
 
-= link_to 'New Task', new_task_path
+      .input-field.col.s5
+        = f.text_field :title
+
+      .input-field.col.s1
+        = f.number_field :estimate
+
+      .input-field.col.s1
+        = f.number_field :actual
+
+      .input-field.col.s1
+        = f.select :status, Task.statuses.keys
+
+      .input-field.col.s1 = f.submit 'Save', class: 'btn'
+
+      .input-field.col.s1 = link_to user_task_path(@user, task), method: :delete, class: 'btn red darken-2' do
+        i.material-icons delete
