@@ -9,18 +9,6 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  # GET /users/:user_id/tasks/1
-  # GET /users/:user_id/tasks/1.json
-  def show; end
-
-  # GET /users/:user_id/tasks/new
-  def new
-    @task = Task.new
-  end
-
-  # GET /users/:user_id/tasks/1/edit
-  def edit; end
-
   # POST /users/:user_id/tasks
   # POST /users/:user_id/tasks.json
   def create
