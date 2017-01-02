@@ -4,6 +4,12 @@ nav.blue.darken-2
 
     ul.right
       - if signed_in?
+        li
+          i#pomodoro-switch.start.material-icons play_arrow
+          i#pomodoro-switch.stop.material-icons stop
+
+        li
+          span#pomodoro-timer 25:00
         li.dropdown-button data-activates='nav-dropdown' = link_to('#') do
           = current_user.name
           i.material-icons.right arrow_drop_down
