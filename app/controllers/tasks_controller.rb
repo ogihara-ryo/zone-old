@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /users/:user_id/tasks
   # GET /users/:user_id/tasks.json
   def index
+    redirect_to root_path and return unless signed_in?
     set_tasks
     @task = Task.new
   end
