@@ -22,7 +22,7 @@
     thead
       tr
         th.col.s2
-        th.col.s5 Title
+        th.col.s4 Title
         th.col.s1 Estimate
         th.col.s1 Actual
         th.col.s1 Status
@@ -37,7 +37,7 @@
         - elsif task.started?
           = link_to 'Finish', user_task_finish_path(@user, task), method: :put, class: 'btn blue darken-4', remote: true
 
-      .input-field.col.s5
+      .input-field.col.s4
         = f.text_field :title
 
       .input-field.col.s1
@@ -49,10 +49,12 @@
       .input-field.col.s1
         = f.select :status, Task.statuses.keys
 
-      .input-field.col.s1 = f.submit 'Save', class: 'btn', remote: true
+      .input-field.col.s2.center
+        = f.submit 'Save', class: 'btn', remote: true
 
-      .input-field.col.s1 = link_to user_task_path(@user, task), method: :delete, class: 'btn red darken-2', remote: true do
-        i.material-icons delete
+      .input-field.col.s1
+        = link_to user_task_path(@user, task), method: :delete, class: 'btn red darken-2', remote: true do
+          i.material-icons delete
 
 javascript:
   $('select').material_select();
