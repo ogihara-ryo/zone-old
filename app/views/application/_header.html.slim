@@ -5,6 +5,8 @@ nav.blue.darken-2
     ul.right
       - if signed_in?
         li
+          = Time.zone.today.to_date
+        li
           i#pomodoro-switch.start.material-icons play_arrow
           i#pomodoro-switch.stop.material-icons stop
 
