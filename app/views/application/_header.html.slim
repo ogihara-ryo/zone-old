@@ -2,10 +2,9 @@ nav.blue.darken-2
   .nav-wrapper.container
     = link_to 'Zone', root_path, class: 'brand-logo'
 
-    ul.right
+    ul.right.hide-on-med-and-down
       - if signed_in?
-        li
-          = Time.zone.today.to_date
+        li = link_to Time.zone.today.to_date, '#', class: 'date-picker'
         li
           i#pomodoro-switch.start.material-icons play_arrow
           i#pomodoro-switch.stop.material-icons stop
