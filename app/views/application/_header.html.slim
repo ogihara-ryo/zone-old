@@ -4,13 +4,15 @@ nav.blue.darken-2
 
     ul.right.hide-on-med-and-down
       - if signed_in?
-        li = link_to Time.zone.today.to_date, '#', class: 'date-picker'
-        li
-          i#pomodoro-switch.start.material-icons play_arrow
-          i#pomodoro-switch.stop.material-icons stop
+        li = link_to '', class: 'date-picker' do
+          = Time.zone.today.to_date
+          i.material-icons.left today
 
-        li
+        li = link_to '', id: 'pomodoro' do
           span#pomodoro-timer 25:00
+          i.start.material-icons.left play_arrow
+          i.stop.material-icons.left stop
+
         li.dropdown-button data-activates='nav-dropdown' = link_to('#') do
           = current_user.name
           i.material-icons.right arrow_drop_down

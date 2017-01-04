@@ -5,13 +5,13 @@ $(function() {
   var Notification = window.Notification || window.mozNotification || window.webkitNotification;
   Notification.requestPermission();
 
-  $('#pomodoro-switch.start').click(function() {
+  $('#pomodoro .start').click(function() {
     startPomodoro();
     $('.start').hide();
     $('.stop').show();
   });
 
-  $('#pomodoro-switch.stop').click(function() {
+  $('#pomodoro .stop').click(function() {
     clearTimeout(timerId);
     $('.stop').hide();
     $('.start').show();
